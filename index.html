@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solana Trading Bot Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/wallet-adapter.css">
+    <style>
+      body {
+        background-color: #0f172a; /* slate-900 */
+        color: #f8fafc; /* slate-50 */
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+    "recharts": "https://esm.sh/recharts@2.12.7",
+    "@solana/web3.js": "https://esm.sh/@solana/web3.js@1.91.7",
+    "@solana/wallet-adapter-base": "https://esm.sh/@solana/wallet-adapter-base@0.9.23",
+    "@solana/wallet-adapter-react": "https://esm.sh/@solana/wallet-adapter-react@0.15.35",
+    "@solana/wallet-adapter-react-ui": "https://esm.sh/@solana/wallet-adapter-react-ui@0.9.35",
+    "@solana/wallet-adapter-wallets": "https://esm.sh/@solana/wallet-adapter-wallets@0.19.32",
+    "crypto-browserify": "https://esm.sh/crypto-browserify@3.12.0",
+    "process": "https://esm.sh/process@0.11.10",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Polyfill for Buffer required by wallet-adapter
+      import { Buffer } from "crypto-browserify";
+      window.Buffer = Buffer;
+      // Polyfill for process required by wallet-adapter
+      import process from "process";
+      window.process = process;
+    </script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

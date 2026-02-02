@@ -1,0 +1,80 @@
+
+.wallet-adapter-button {
+    background-color: #334155; /* slate-700 */
+    border: 1px solid #475569; /* slate-600 */
+    color: #f1f5f9; /* slate-100 */
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s;
+}
+
+.wallet-adapter-button:hover {
+    background-color: #475569; /* slate-600 */
+}
+
+.wallet-adapter-button-trigger {
+    background-color: #334155; /* slate-700 */
+}
+
+.wallet-adapter-button-trigger:hover {
+    background-color: #475569; /* slate-600 */
+}
+
+.wallet-adapter-modal-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+.wallet-adapter-modal-container {
+    background: #1e293b; /* slate-800 */
+    border: 1px solid #334155; /* slate-700 */
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.wallet-adapter-modal-title {
+    color: #f1f5f9; /* slate-100 */
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.wallet-adapter-modal-list li .wallet-adapter-button {
+    background: #334155; /* slate-700 */
+    font-size: 1rem;
+    width: 100%;
+}
+
+.wallet-adapter-modal-list li .wallet-adapter-button:hover {
+    background: #475569; /* slate-600 */
+}
+
+.wallet-adapter-modal-list li .wallet-adapter-button-end-icon,
+.wallet-adapter-modal-list li .wallet-adapter-button-start-icon {
+    filter: invert(1);
+}
+
+.wallet-adapter-modal-button-close {
+    background-color: #334155;
+    border-radius: 9999px;
+    color: #94a3b8; /* slate-400 */
+}
+
+.wallet-adapter-modal-button-close:hover {
+    background-color: #475569;
+    color: #e2e8f0; /* slate-200 */
+}
+
+/* Dropdown menu for connected state */
+.wallet-adapter-dropdown-list {
+    background: #1e293b; /* slate-800 */
+    border: 1px solid #334155; /* slate-700 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.wallet-adapter-dropdown-list-item {
+    color: #cbd5e1; /* slate-300 */
+}
+.wallet-adapter-dropdown-list-item:hover {
+    background: #334155; /* slate-700 */
+    color: #f1f5f9; /* slate-100 */
+}
