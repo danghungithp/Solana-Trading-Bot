@@ -13,32 +13,28 @@ export interface LogEntry {
   message: string;
 }
 
-export enum PositionStatus {
-  OPEN = 'OPEN',
-  CLOSED = 'CLOSED',
+// Replaced trading 'Position' with wallet 'Holding'
+export interface Holding {
+  id: string; // mint address
+  name: string;
+  symbol: string;
+  balance: number;
+  price: number;
+  value: number;
+  logo: string;
 }
 
-export interface Position {
-  id: string;
-  token: string;
-  entryPrice: number;
-  currentPrice: number;
-  size: number;
-  pnl: number;
-  status: PositionStatus;
-  entryTime: string;
+// Data for the portfolio allocation pie chart
+export interface AllocationDataPoint {
+  name: string; // symbol
+  value: number; // USD value
 }
 
-export interface PnlDataPoint {
-  time: string;
-  pnl: number;
-}
-
-export interface AnalyticsData {
-  totalPnl: number;
-  dailyPnl: number;
-  winRate: number;
-  sharpeRatio: number;
-  openPositions: number;
-  pnlHistory: PnlDataPoint[];
+// Revamped analytics data structure for portfolio view
+export interface PortfolioAnalytics {
+  totalValue: number;
+  tokenCount: number;
+  largestHoldingValue: number;
+  largestHoldingSymbol: string;
+  allocation: AllocationDataPoint[];
 }

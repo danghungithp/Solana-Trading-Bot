@@ -15,4 +15,8 @@
 //    với backend của bạn.
 // -----------------------------------------------------------------------------
 
-export const HELIUS_WEBSOCKET_URL = 'wss://mainnet.helius-rpc.com/?api-key=4cc851a3-f12b-4e18-a1d0-f6dceabe3d55';
+const API_KEY = '4cc851a3-f12b-4e18-a1d0-f6dceabe3d55';
+
+// NOTE: Switched to devnet to match the wallet adapter configuration.
+export const HELIUS_WEBSOCKET_URL = `wss://devnet.helius-rpc.com/?api-key=${API_KEY}`;
+export const HELIUS_RPC_URL = `https://devnet.helius-rpc.com/?api-key=${API_KEY}`;

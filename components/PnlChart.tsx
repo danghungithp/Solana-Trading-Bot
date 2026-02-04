@@ -1,37 +1,59 @@
 
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, Defs, Gradient, Stop } from 'recharts';
-import { PnlDataPoint } from '../types';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend } from 'recharts';
+import { AllocationDataPoint } from '../types';
 
-interface PnlChartProps {
-  data: PnlDataPoint[];
+interface PortfolioPieChartProps {
+  data: AllocationDataPoint[];
 }
 
-const PnlChart: React.FC<PnlChartProps> = ({ data }) => {
+const COLORS = ['#0ea5e9', '#34d399', '#f59e0b', '#ec4899', '#8b5cf6', '#64748b', '#f43f5e'];
+
+const CustomTooltip = ({ active, payload }: any) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    const percent = payload[0].percent;
+    return (
+      <div className="bg-slate-900/80 p-3 border border-slate-700 rounded-md shadow-lg text-sm">
+        <p className="text-slate-200 font-bold">{`${data.name}: $${data.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}</p>
+        <p className="text-slate-400">{`(${(percent * 100).toFixed(2)}%)`}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
+const PortfolioPieChart: React.FC<PortfolioPieChartProps> = ({ data }) => {
+  if (!data || data.length === 0) {
+    return <div className="flex items-center justify-center h-full text-slate-500">No allocation data available.</div>;
+  }
   return (
     <ResponsiveContainer width="100%" height="100%">
-      <AreaChart data={data} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-        <defs>
-          <linearGradient id="colorPnl" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.8}/>
-            <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
-          </linearGradient>
-        </defs>
-        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-        <XAxis dataKey="time" tick={{ fill: '#94a3b8' }} fontSize={12} />
-        <YAxis tick={{ fill: '#94a3b8' }} fontSize={12} domain={['auto', 'auto']} />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: 'rgba(15, 23, 42, 0.8)', // slate-900 with opacity
-            borderColor: '#334155', // slate-700
-            borderRadius: '0.5rem',
-          }}
-          labelStyle={{ color: '#f1f5f9' }} // slate-100
+      <PieChart>
+        <Tooltip content={<CustomTooltip />} />
+        <Legend 
+            iconType="circle" 
+            wrapperStyle={{ fontSize: '14px', color: '#94a3b8', paddingTop: '20px' }} 
+            formatter={(value) => <span className="text-slate-300">{value}</span>}
         />
-        <Area type="monotone" dataKey="pnl" stroke="#0ea5e9" fillOpacity={1} fill="url(#colorPnl)" strokeWidth={2} />
-      </AreaChart>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="45%"
+          labelLine={false}
+          outerRadius="80%"
+          fill="#8884d8"
+          dataKey="value"
+          nameKey="name"
+          stroke="none"
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+      </PieChart>
     </ResponsiveContainer>
   );
 };
 
-export default PnlChart;
+export default PortfolioPieChart;
